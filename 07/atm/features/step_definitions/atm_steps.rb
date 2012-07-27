@@ -10,13 +10,18 @@ class Account
 
 end
 
-Given /^I have deposited \$(\d+) in my account$/ do |amount|
+
+CAPTURE_CASH_AMOUNT = Transform /^\$(\d+)$/ do |number|
+                        number.to_i
+                      end
+
+Given /^I have deposited (#{CAPTURE_CASH_AMOUNT}) in my account$/ do |amount|
   my_account = Account.new
-  my_account.deposit(amount.to_i)
-  my_account.balance.should eq(amount.to_i), "Expected the balance to be #{amount} but was #{my_account.balance}."
+  my_account.deposit(amount)
+  my_account.balance.should eq(amount), "Expected the balance to be #{amount} but was #{my_account.balance}."
 end
 
-When /^I request \$(\d+)$/ do |arg1|
+When /^I request (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
   pending # express the regexp above with the code you wish you had
 end
 
