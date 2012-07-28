@@ -7,4 +7,5 @@ group :development do
   gem 'cucumber'
   gem 'capybara'
   gem 'guard'
+  gem 'launchy'
 end

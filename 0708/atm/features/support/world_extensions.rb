@@ -5,6 +5,7 @@ module KnowsTheUserInterface
     include Capybara::DSL
 
     def withdraw_from(account, amount)
+      Sinatra::Application.account = account
       visit '/'
       fill_in 'Amount', :with => amount
       click_button 'Withdraw'
@@ -17,11 +18,11 @@ module KnowsTheUserInterface
   end
 
   def cash_slot
-    @cash_slot ||= CashSlot.new
+    Sinatra::Application.cash_slot
   end
 
   def teller
-    @teller = UserInterface.new
+    @teller ||= UserInterface.new
   end
 
 end
