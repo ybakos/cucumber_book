@@ -39,3 +39,7 @@ class CashSlot
 
 end
 
+require 'sinatra'
+get '/' do
+  'Welcome to our niiice bank.'  
+end
