@@ -21,13 +21,20 @@ class Teller
   end
 
   def withdraw_from(account, amount)
-    account.debit(amount)
-    @cash_slot.dispense(amount)
+    puts account.balance
+    if (account.balance >= amount)
+      account.debit(amount)
+      @cash_slot.dispense(amount)
+    else
+
+    end
   end
 
 end
 
 class CashSlot
+
+  attr_writer :contents
 
   def contents
     @contents || raise("I'm empty!")

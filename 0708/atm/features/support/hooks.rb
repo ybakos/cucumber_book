@@ -1,7 +1,3 @@
-Before do
-  puts "Go!"
-end
-
 After do
-  puts "Stop!"
+  cash_slot.contents = 0
 end

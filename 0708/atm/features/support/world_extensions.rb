@@ -4,6 +4,8 @@ module KnowsTheUserInterface
   class UserInterface
     include Capybara::DSL
 
+    attr_accessor :message
+
     def withdraw_from(account, amount)
       Sinatra::Application.account = account
       visit '/'
