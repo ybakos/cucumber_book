@@ -4,3 +4,4 @@ Feature: Cash withdrawal
     When I withdraw $20
     Then $20 should be dispensed
     And the balance of my account should be $80
+    And I should be told to have a nice day

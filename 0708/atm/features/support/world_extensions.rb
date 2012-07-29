@@ -27,6 +27,10 @@ module KnowsTheUserInterface
     @teller ||= UserInterface.new
   end
 
+  def message
+    Sinatra::Application.teller.message
+  end
+
 end
 
 World(KnowsTheUserInterface)

@@ -16,17 +16,19 @@ end
 
 class Teller
 
+  attr_accessor :message
+
   def initialize(cash_slot)
     @cash_slot = cash_slot
   end
 
   def withdraw_from(account, amount)
-    puts account.balance
-    if (account.balance >= amount)
+    if (account.balance < amount)
+      @message = "Insufficient funds brah!"
+    else
       account.debit(amount)
       @cash_slot.dispense(amount)
-    else
-
+      @message = "Thank you, have a nice day!"
     end
   end
 
@@ -37,7 +39,7 @@ class CashSlot
   attr_writer :contents
 
   def contents
-    @contents || raise("I'm empty!")
+    @contents ||= 0 # raise("I'm empty!")
   end
 
   def dispense(amount)
@@ -64,6 +66,6 @@ set :account do
   fail 'account has not been set'
 end
 post '/withdraw' do
-  teller = Teller.new(settings.cash_slot)
-  teller.withdraw_from(settings.account, params[:amount].to_i)
+  set :teller, Teller.new(settings.cash_slot)
+  settings.teller.withdraw_from(settings.account, params[:amount].to_i)
 end
