@@ -1,0 +1,12 @@
+source :rubygems
+
+gem 'sinatra'
+
+group :development do
+  gem 'rspec'
+  gem 'cucumber'
+  gem 'capybara'
+  gem 'guard'
+  gem 'launchy'
+  gem 'guard-cucumber'
+end
