@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'sinatra'
+gem 'service_manager'
 
 group :development do
   gem 'rspec'
