@@ -8,4 +8,5 @@ group :development do
   gem 'capybara'
   gem 'guard'
   gem 'launchy'
+  gem 'guard-cucumber'
 end
