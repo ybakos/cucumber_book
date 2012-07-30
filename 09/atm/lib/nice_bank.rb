@@ -30,7 +30,11 @@ class Teller
     @cash_slot = cash_slot
   end
 
+  # Note that this causes a withdrawal to fail when using the transaction queue (that sleeps to illustrate an asynchronous delay)
+  # Why? Because the credit isn't written before reading the account balance here.
+  # You can uncomment the sleep below to get it to pass.
   def withdraw_from(account, amount)
+    # sleep 1
     if (account.balance < amount)
       @message = "Insufficient funds brah!"
     else
