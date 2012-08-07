@@ -1,54 +1,48 @@
+#---
+# Excerpted from "The Cucumber Book",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material, 
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose. 
+# Visit http://www.pragmaticprogrammer.com/titles/hwcuc for more book information.
+#---
 require_relative 'transaction_queue'
 require_relative 'account'
 
 class Teller
-
-  attr_accessor :message
-
   def initialize(cash_slot)
     @cash_slot = cash_slot
   end
-
-  # Note that this causes a withdrawal to fail when using the transaction queue (that sleeps to illustrate an asynchronous delay)
-  # Why? Because the credit isn't written before reading the account balance here.
-  # You can uncomment the sleep below to get it to pass.
+  
   def withdraw_from(account, amount)
-    # sleep 1
-    if (account.balance < amount)
-      @message = "Insufficient funds brah!"
-    else
-      account.debit(amount)
-      @cash_slot.dispense(amount)
-      @message = "Thank you, have a nice day!"
-    end
+    account.debit(amount)
+    @cash_slot.dispense(amount)
   end
-
 end
 
 class CashSlot
-
-  attr_writer :contents
-
   def contents
-    @contents ||= 0 # raise("I'm empty!")
+    @contents or raise("I'm empty!")
   end
-
+  
   def dispense(amount)
     @contents = amount
   end
-
 end
 
 require 'sinatra'
+
 get '/' do
   %{
-    <html><body>
+  <html>
+    <body>
       <form action="/withdraw" method="post">
         <label for="amount">Amount</label>
         <input type="text" id="amount" name="amount">
         <button type="submit">Withdraw</button>
       </form>
-    </body></html>
+    </body>
+  </html>
   }
 end
 
@@ -56,7 +50,9 @@ set :cash_slot, CashSlot.new
 set :account do
   fail 'account has not been set'
 end
+
 post '/withdraw' do
-  set :teller, Teller.new(settings.cash_slot)
-  settings.teller.withdraw_from(settings.account, params[:amount].to_i)
+  teller = Teller.new(settings.cash_slot)
+  teller.withdraw_from(settings.account, params[:amount].to_i)
 end
+

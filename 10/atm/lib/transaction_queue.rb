@@ -1,10 +1,14 @@
+#---
+# Excerpted from "The Cucumber Book",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material, 
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose. 
+# Visit http://www.pragmaticprogrammer.com/titles/hwcuc for more book information.
+#---
 require 'fileutils'
 
-# Filesystem acts as message store, with
-# messages stored as a file in messages/.
-# As messages are read from the "queue," we'll delete the file.
 class TransactionQueue
-
   def self.clear
     FileUtils.rm_rf('messages')
     FileUtils.mkdir_p('messages')
@@ -25,5 +29,4 @@ class TransactionQueue
     yield File.read(next_message_file)
     FileUtils.rm_rf(next_message_file)
   end
-
 end
