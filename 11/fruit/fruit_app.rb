@@ -12,4 +12,8 @@ class FruitApp < Sinatra::Base
     FruitApp.data.to_json
   end
 
+  post '/fruits' do
+    FruitApp.data = FruitApp.data.push(params)
+  end
+
 end
