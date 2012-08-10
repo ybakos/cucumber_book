@@ -6,5 +6,7 @@ gem 'json'
 group :test do
   gem 'cucumber'
   gem 'rspec'
-  gem 'rack-test'
+  gem 'httparty'
+  gem 'childprocess'
+#  gem 'rack-test'
 end
