@@ -8,7 +8,8 @@ Given /^the User has posted the message "([^"]*)"$/ do |message_text|
 end
 
 When /^I visit the page for the User$/ do
-  pending # express the regexp above with the code you wish you had
+  User.count.should == 1
+  visit(user_path(User.first))
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
