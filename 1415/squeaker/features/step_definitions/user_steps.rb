@@ -15,3 +15,11 @@ end
 Then /^I should see "([^"]*)"$/ do |text|
   page.should have_content(text)
 end
+
+Given /^a User has posted the following messages:$/ do |messages|
+  user = FactoryGirl.build(:user)
+  messages_attributes = messages.hashes.map do |message_attrs|
+    message_attrs.merge({:user_id => user})
+  end
+  Message.create!(messages_attributes)
+end
