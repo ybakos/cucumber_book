@@ -4,7 +4,9 @@ When /^I search for "([^"]*)"$/ do |query|
   click_button('Search')
 end
 
-Then /^the results should be:$/ do |table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+Then /^the results should be:$/ do |expected_results|
+  results = [['content']] + page.all('ol.results li').map do |li|
+    [li.text]
+  end
+  expected_results.diff!(results)
 end
