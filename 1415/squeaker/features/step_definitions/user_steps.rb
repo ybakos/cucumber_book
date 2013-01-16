@@ -17,7 +17,7 @@ Then /^I should see "([^"]*)"$/ do |text|
 end
 
 Given /^a User has posted the following messages:$/ do |messages|
-  user = FactoryGirl.build(:user)
+  user = FactoryGirl.build(:user).save
   messages_attributes = messages.hashes.map do |message_attrs|
     message_attrs.merge({:user_id => user})
   end
