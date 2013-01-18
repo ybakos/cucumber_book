@@ -7,7 +7,7 @@
   </fieldset>
   <ol class="results">
     <% @messages.each do |message| %>
-    <li><%= link_to(message.content, user_message_path(message.user, message)) %></li>
+    <li><%= message.user.username %>: <%= link_to(message.content, user_message_path(message.user, message)) %></li>
     <% end %>
   </ol>
 </form>
