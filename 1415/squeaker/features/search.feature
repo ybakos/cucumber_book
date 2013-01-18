@@ -7,6 +7,6 @@ Feature: Search
       | I am going to work |
     When I search for "I am"
     Then the results should be:
-      | content            |
-      | I am making dinner |
-      | I am going to work |
+      | username | content            |
+      | testuser | I am making dinner |
+      | testuser | I am going to work |
