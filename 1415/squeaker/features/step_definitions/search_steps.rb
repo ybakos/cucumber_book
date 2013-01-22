@@ -10,3 +10,8 @@ Then /^the results should be:$/ do |expected_results|
   end
   expected_results.diff!(results)
 end
+
+When /^I enter "([^"]*)" in the search field$/ do |query|
+  visit('/search')
+  fill_in('query', :with => query)
+end

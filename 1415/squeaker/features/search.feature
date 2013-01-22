@@ -11,6 +11,7 @@ Feature: Search
       | I am making dinner |
       | I am going to work |
 
+  @javascript
   Scenario: Find messages by content using auto-search
     Given a User has posted the following messages:
       | content            |
