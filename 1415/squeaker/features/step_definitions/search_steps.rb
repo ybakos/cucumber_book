@@ -5,6 +5,7 @@ When /^I search for "([^"]*)"$/ do |query|
 end
 
 Then /^the results should be:$/ do |expected_results|
+  find('ol.results li')
   results = [['content']] + page.all('ol.results li').map do |li|
     [li.text]
   end
