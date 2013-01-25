@@ -25,10 +25,10 @@ Search.prototype.search = function (query) {
 };
 
 Search.prototype.render = function (results) {
-  var html = "";
+  var html = "FOO";
   for (var i = 0, l = results.length; i < l; ++i) {
     var url = "/users/" + results[i].user_id + "/messages/" + results[i].id;
-    html += "<li><a href=\"" + url + "\">" + results[i]content + "</a></li>";
+    html += "<li><a href=\"" + url + "\">" + results[i].content + "</a></li>";
   }
   jQuery(this.form).find("ol.results").html(html);
 };
@@ -36,7 +36,7 @@ Search.prototype.render = function (results) {
 jQuery.fn.search = function () {
   this.each(function () {
     var search = new Search(this);
-    var input = jQuery(this).find("intput[type=text]");
+    var input = jQuery(this).find("input[type=text]");
     input.bind("keyup", function () {
       search.queue(this.value);
     });
