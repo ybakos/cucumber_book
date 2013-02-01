@@ -8,8 +8,9 @@ Given /^the input "(.*?)"$/ do |input|
 end
 
 When /^the calculator is run$/ do
+  path = File.expand_path("#{File.dirname(__FILE__)}/../../calculator.rb")
   steps %{
-    When I run `ruby calculator.rb input.txt`
+    When I run `ruby #{path} input.txt`
   }
 end
 

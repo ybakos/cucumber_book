@@ -1,4 +1,3 @@
-@announce
 Feature: Adding
   Scenario: Add two numbers
   Given the input "2+2"
