@@ -1,11 +1,24 @@
-Given /^the input "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given /^the input "(.*?)"$/ do |input|
+  steps %{
+    Given a file named "input.txt" with:
+      """
+      #{input}
+      """
+  }
 end
 
 When /^the calculator is run$/ do
-  pending # express the regexp above with the code you wish you had
+  steps %{
+    When I run `ruby calculator.rb input.txt`
+  }
 end
 
-Then /^the output should be "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^the output should be "(.*?)"$/ do |output|
+  steps %{
+    Then it should pass with:
+      """
+      #{output}
+      """
+  }
 end
+
