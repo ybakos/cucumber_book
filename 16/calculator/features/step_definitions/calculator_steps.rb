@@ -22,3 +22,14 @@ Then /^the output should be "(.*?)"$/ do |output|
   }
 end
 
+When /^the calculator is run with no input$/ do
+  steps %{
+    When I run `calculator` interactively
+  }
+end
+
+When /^I enter the calculation "([^"]*)"$/ do |calculation|
+  steps %{
+    When I type "#{calculation}"
+  }
+end
